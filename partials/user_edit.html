@@ -1,0 +1,40 @@
+<div class="modal_head">
+    <i class="icon_close" onclick="common.modal_hide()"></i>
+</div>
+<div class="modal_body">
+    <div class="input_group_modal">
+        <div>Status</div>
+        <select id="status">
+            <option value="0">Free</option>
+            <option value="1">Reserved</option>
+            <option value="2">Sold</option>
+        </select>
+    </div>
+    <div class="input_group_modal">
+        <div>Billing</div>
+        <select id="billing">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="input_group_modal">
+        <div>Lot number</div>
+        <input type="text" id="number" value="0">
+    </div>
+    <div class="input_group_modal">
+        <div>Size, acres</div>
+        <input type="text" id="size" value="0">
+    </div>
+    <div class="input_group_modal">
+        <div>Price, AED</div>
+        <input type="text" id="price" value="0">
+    </div>
+    <div class="modal_controls">
+        <div>
+            <div class="btn_modal" >Save</div>
+        </div>
+        <div>
+            <div class="btn_modal light" onclick="common.modal_hide();">Cancel</div>
+        </div>
+    </div>
+</div>
