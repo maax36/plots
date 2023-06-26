@@ -155,6 +155,7 @@ i {
     transition: all 0.1s ease-in-out;
 }
 .menu_popup.active {pointer-events: auto; opacity: 1; transform: translateY(0px);}
+.menu_popup .delete {color: #ca4242;}
 .menu_popup:after {
     content: ''; position: absolute; top: -6px; right: 20px; width: 12px; height: 12px; transform: rotate(45deg); background: #fff;
     z-index: 1;

@@ -159,6 +159,20 @@ let common = {
         });
     },
 
+    user_delete: (user_id = 0) => {
+        // vars
+        let data = {
+            user_id: user_id,
+            offset: global.offset
+        };
+        let location = {dpt: 'user', act: 'delete'};
+        // call
+        request({location: location, data: data}, (result) => {
+            common.modal_hide();
+            html('table', result.html);
+        });
+    },
+
     // plots
 
     plot_edit_window: (plot_id, e) => {

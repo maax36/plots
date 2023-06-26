@@ -81,11 +81,18 @@ class AUsers {
         $user_id = isset($d['user_id']) && is_numeric($d['user_id']) ? $d['user_id'] : 0;
         $first_name = isset($d['first_name']) && trim($d['first_name']) ? trim($d['first_name']) : '';
         $last_name = isset($d['last_name']) && trim($d['last_name']) ? trim($d['last_name']) : '';
-        $phone = isset($d['phone']) && trim($d['phone']) ? trim($d['phone']) : '';
-        $email = isset($d['email']) && trim($d['email']) ? trim($d['email']) : '';
-        $plot_id = isset($d['plot_id']) && is_numeric($d['plot_id']) ? $d['plot_id'] : 0;
+        $phone = isset($d['phone']) && trim($d['phone']) ? preg_replace('~\D+~', '', trim($d['phone'])) : '';
+        $email = isset($d['email']) && trim($d['email']) ? strtolower(trim($d['email'])) : '';
+        $plot_id = isset($d['plot_id']) ? $d['plot_id'] : '';
+        if (is_array($plot_id)) {
+            $plot_id = implode(',', $plot_id);
+        }
         $offset = isset($d['offset']) ? preg_replace('~\D+~', '', $d['offset']) : 0;
-        // update
+
+        if (empty($first_name) || empty($last_name) || empty($phone) || empty($email)) {
+            return false;
+        }
+
         if ($user_id) {
             $set = [];
             $set[] = "first_name='".$first_name."'";
@@ -114,6 +121,15 @@ class AUsers {
             );") or die (DB::error());
         }
         // output
+        return AUsers::users_fetch(['offset' => $offset]);
+    }
+
+    public static function user_delete($d = []) {
+        $user_id = isset($d['user_id']) && is_numeric($d['user_id']) ? $d['user_id'] : 0;
+        $offset = isset($d['offset']) ? preg_replace('~\D+~', '', $d['offset']) : 0;
+        
+        DB::query("DELETE FROM users WHERE user_id = '".$user_id."' LIMIT 1;") or die(DB::error());
+
         return AUsers::users_fetch(['offset' => $offset]);
     }
 
