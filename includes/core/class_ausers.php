@@ -18,14 +18,14 @@ class AUsers {
             ];
         } else {
             return [
-                'user_id' => 0,
+                'id' => 0,
                 'village_id' => 0,
-                'plot_id' => 0,
+                'plot_id' => '',
                 'access' => '',
                 'first_name' => '',
                 'last_name' => '',
-                'email' => 0,
-                'phone' => 0
+                'email' => '',
+                'phone' => ''
             ];
         }
     }
