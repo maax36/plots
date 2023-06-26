@@ -15,7 +15,9 @@
     <script type="text/javascript">
         var global = {literal}{{/literal}
             {if $global.path == 'plots'}
-            offset: {$offset}
+                offset: {$offset}
+            {else if $global.path == 'users'}
+                offset: {$offset}
             {/if}
         {literal}}{/literal}
     </script>
